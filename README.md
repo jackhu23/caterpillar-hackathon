@@ -1,6 +1,6 @@
 # Caterpillar Hackathon
 
-> One-line pitch: what this project does and who it's for.
+> A reimagined caterpillar.com homepage for job seekers and curious visitors, with a Cat AI Assistant.
 
 ## Problem
 
@@ -12,14 +12,17 @@ How does the project solve it? Add screenshots or a demo link here.
 
 ## Tech Stack
 
-- TBD
+- Next.js (App Router) + TypeScript
+- Tailwind CSS v4, motion, lucide-react, zustand
+- Vitest + Testing Library
 
 ## Getting Started
 
 ```bash
 git clone https://github.com/jackhu23/caterpillar-hackathon.git
 cd caterpillar-hackathon
-# setup steps go here
+npm install
+npm run dev   # http://localhost:3000
 ```
 
 ## Team
