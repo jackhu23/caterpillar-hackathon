@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { MotionConfig, motion } from "motion/react";
 import { MessageSquare, SendHorizontal } from "lucide-react";
 import { useAssistant } from "@/lib/assistant-store";
 
@@ -13,9 +13,6 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export default function Hero() {
   const open = useAssistant((s) => s.open);
   const [question, setQuestion] = useState("");
-  const reduceMotion = useReducedMotion();
-  // With reduced motion, render the final state immediately.
-  const initial = reduceMotion ? false : "hidden";
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -24,13 +21,14 @@ export default function Hero() {
   }
 
   return (
+    <MotionConfig reducedMotion="user">
     <section
       aria-label="Introduction"
       className="relative isolate flex min-h-[88svh] items-end overflow-hidden bg-iron text-paper"
     >
       <motion.div
         className="absolute inset-0 -z-10"
-        initial={reduceMotion ? false : { scale: 1.08 }}
+        initial={{ scale: 1.08 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1.8, ease: EASE }}
       >
@@ -48,7 +46,7 @@ export default function Hero() {
 
       <motion.div
         className="mx-auto w-full max-w-[1280px] px-6 pt-32 pb-16 sm:px-10 md:pb-24"
-        initial={initial}
+        initial="hidden"
         animate="visible"
         variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
       >
@@ -146,5 +144,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
     </section>
+    </MotionConfig>
   );
 }
